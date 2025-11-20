@@ -1,4 +1,3 @@
-@@ -1,257 +0,0 @@
 # 🍽️ Application CRUD Restaurant
 
 Application de gestion de restaurant développée avec NestJS et PostgreSQL. Cette application permet de gérer les clients, plats, tables, réservations et commandes.
