@@ -15,8 +15,11 @@ describe('AppController', () => {
   });
 
   describe('root', () => {
-    it('should return "Hello World!"', () => {
-      expect(appController.getHello()).toBe('Hello World!');
+    it('should return API info', () => {
+      const result = appController.getInfo();
+      expect(result).toBeDefined();
+      expect(result).toHaveProperty('message');
+      expect(result).toHaveProperty('endpoints');
     });
   });
 });
