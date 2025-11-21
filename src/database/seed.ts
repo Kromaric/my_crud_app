@@ -1,6 +1,7 @@
 import { DataSource } from 'typeorm';
 import { seedClients } from './seeds/client.seeder';
 import { seedCommandes } from './seeds/commande.seeder';
+import { seedReservations } from './seeds/reservation.seeder';
 // Import des autres seeders à ajouter plus tard
 // import { seedPlats } from './seeds/plat.seeder';
 // import { seedTables } from './seeds/table.seeder';
@@ -25,7 +26,7 @@ async function runSeeds() {
     await seedClients(dataSource);
     // await seedPlats(dataSource);
     // await seedTables(dataSource);
-    // await seedReservations(dataSource);
+    await seedReservations(dataSource);
     await seedCommandes(dataSource);
 
     await dataSource.destroy();
