@@ -2,7 +2,7 @@
 
 substitutions:
   _REGION: 'europe-west1'
-  _REPO_NAME: 'my-crud-app-lp-2026-repo'
+  _REPO_NAME: 'my-crud-app'
   _IMAGE_NAME: 'my-crud-app'
   _SERVICE_NAME: 'my-crud-app'
   _PORT: '3000'
@@ -15,7 +15,7 @@ steps:
       - '-t'
       - '${_REGION}-docker.pkg.dev/$PROJECT_ID/${_REPO_NAME}/${_IMAGE_NAME}:latest'
       - '-t'
-      - '${_REGION}-docker.pkg.dev/$PROJECT_ID/${_REPO_NAME}/${_IMAGE_NAME}:$BUILD_ID'
+     # - '${_REGION}-docker.pkg.dev/$PROJECT_ID/${_REPO_NAME}/${_IMAGE_NAME}:$BUILD_ID'
       - '.'
 
   # Step 2 : Push image to Artifact Registry
