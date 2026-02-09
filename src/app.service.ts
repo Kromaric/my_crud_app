@@ -34,6 +34,7 @@ export class AppService {
           'POST /reservations': 'Crée une nouvelle réservation',
           'PUT /reservations/:id': 'Modifie une réservation',
           'DELETE /reservations/:id': 'Supprime une réservation',
+          'GET /errors': 'provoque une erreur pour tester la gestion des erreurs',
         },
         commandes: {
           'GET /commandes': 'Liste toutes les commandes',

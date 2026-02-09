@@ -95,4 +95,11 @@ export class ReservationsController {
     this.reservationsService.remove(Number(id));
     return { message: `Réservation #${id} supprimée` };
   }
+
+  @Get('/errors')
+  @ApiOperation({ summary: 'Provoque une erreur pour tester la gestion des erreurs' })
+  @ApiResponse({ status: 500, description: 'Erreur provoquée' })
+  testError() {
+    throw new Error('Ceci est une erreur de test');
+  }
 }

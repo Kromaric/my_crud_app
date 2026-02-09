@@ -111,4 +111,6 @@ export class ReservationsService {
     const index = this.reservations.findIndex((r) => r.id === id);
     this.reservations.splice(index, 1);
   }
+
+  
 }
