@@ -16,7 +16,7 @@ steps:
       - "europe-west1-docker.pkg.dev/mycrudapp-478912/my-crud-app/my-crud-app:latest"
       - "-t"
       # - '${_REGION}-docker.pkg.dev/mycrudapp-478912/my-crud-app/my-crud-app:$BUILD_ID'
-      - "."
+      
 
   # Step 2 : Push image to Artifact Registry
   - name: "gcr.io/cloud-builders/docker"
