@@ -13,21 +13,21 @@ steps:
     args:
       - "build"
       - "-t"
-      - "europe-west1-docker.pkg.dev/$PROJECT_ID/${_REPO_NAME}/${_IMAGE_NAME}:latest"
+      - "europe-west1-docker.pkg.dev/mycrudapp-478912/my-crud-app/my-crud-app:latest"
       - "-t"
-      # - '${_REGION}-docker.pkg.dev/$PROJECT_ID/${_REPO_NAME}/${_IMAGE_NAME}:$BUILD_ID'
+      # - '${_REGION}-docker.pkg.dev/mycrudapp-478912/my-crud-app/my-crud-app:$BUILD_ID'
       - "."
 
   # Step 2 : Push image to Artifact Registry
   - name: "gcr.io/cloud-builders/docker"
     args:
       - "push"
-      - "europe-west1-docker.pkg.dev/$PROJECT_ID/${_REPO_NAME}/${_IMAGE_NAME}:latest"
+      - "europe-west1-docker.pkg.dev/mycrudapp-478912/my-crud-app/my-crud-app:latest"
 
   - name: "gcr.io/cloud-builders/docker"
     args:
       - "push"
-      - "europe-west1-docker.pkg.dev/$PROJECT_ID/${_REPO_NAME}/${_IMAGE_NAME}:$BUILD_ID"
+      - "europe-west1-docker.pkg.dev/mycrudapp-478912/my-crud-app/my-crud-app:$BUILD_ID"
 
   # Step 3 : Deploy on Cloud Run
   - name: "gcr.io/google.com/cloudsdktool/cloud-sdk"
@@ -36,7 +36,7 @@ steps:
       - "run"
       - "deploy"
       - "${_SERVICE_NAME}"
-      - "--image=europe-west1-docker.pkg.dev/$PROJECT_ID/${_REPO_NAME}/${_IMAGE_NAME}:latest"
+      - "--image=europe-west1-docker.pkg.dev/mycrudapp-478912/my-crud-app/my-crud-app:latest"
       - "--region=europe-west1"
       - "--platform=managed"
       - "--allow-unauthenticated"
@@ -44,8 +44,8 @@ steps:
 
 # Images to be stored on Artifact Registry
 images:
-  - "${_REGION}-docker.pkg.dev/$PROJECT_ID/${_REPO_NAME}/${_IMAGE_NAME}:latest"
-  - "${_REGION}-docker.pkg.dev/$PROJECT_ID/${_REPO_NAME}/${_IMAGE_NAME}:$BUILD_ID"
+  - "${_REGION}-docker.pkg.dev/mycrudapp-478912/my-crud-app/my-crud-app:latest"
+  - "${_REGION}-docker.pkg.dev/mycrudapp-478912/my-crud-app/my-crud-app:$BUILD_ID"
 
 # Build Options
 options:
