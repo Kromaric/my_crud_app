@@ -1,5 +1,3 @@
-# cloudbuild.yaml - Configuration for Google Cloud Build
-
 substitutions:
   _REGION: 'europe-west1'
   _REPO_NAME: 'my-crud-app-repo'
@@ -8,7 +6,7 @@ substitutions:
   _PORT: '3000'
 
 steps:
-  # Step 1 : Build Docker Image
+  # Step 1: Build Docker Image
   - name: 'gcr.io/cloud-builders/docker'
     args:
       - 'build'
@@ -16,18 +14,13 @@ steps:
       - '${_REGION}-docker.pkg.dev/$PROJECT_ID/${_REPO_NAME}/${_IMAGE_NAME}:$SHORT_SHA'
       - '.'
 
-  # Step 2 : Push image to Artifact Registry
+  # Step 2: Push image to Artifact Registry
   - name: 'gcr.io/cloud-builders/docker'
     args:
       - 'push'
       - '${_REGION}-docker.pkg.dev/$PROJECT_ID/${_REPO_NAME}/${_IMAGE_NAME}:$SHORT_SHA'
 
-  - name: 'gcr.io/cloud-builders/docker'
-    args:
-      - 'push'
-      - '${_REGION}-docker.pkg.dev/$PROJECT_ID/${_REPO_NAME}/${_IMAGE_NAME}:$$SHORT_SHA'
-
-  # Step 3 : Deploy on Cloud Run
+  # Step 3: Deploy on Cloud Run
   - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
     entrypoint: gcloud
     args:
@@ -40,15 +33,11 @@ steps:
       - '--allow-unauthenticated'
       - '--port=${_PORT}'
 
-# Images to be stored on Artifact Registry
 images:
   - '${_REGION}-docker.pkg.dev/$PROJECT_ID/${_REPO_NAME}/${_IMAGE_NAME}:$SHORT_SHA'
-  - '${_REGION}-docker.pkg.dev/$PROJECT_ID/${_REPO_NAME}/${_IMAGE_NAME}:$BUILD_ID'
 
-# Build Options
 options:
   logging: CLOUD_LOGGING_ONLY
   machineType: 'E2_HIGHCPU_8'
 
-# Build timeout (10 minutes)
 timeout: '600s'
