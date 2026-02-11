@@ -30,7 +30,7 @@ export async function seedClients(dataSource: DataSource): Promise<void> {
       vegetarien: true,
     },
     {
-      nom: 'Durand Thomas',
+      nom: 'Durand Claire',
       allergies: [],
       majeur: true,
       vegetarien: false,
