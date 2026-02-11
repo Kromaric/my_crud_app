@@ -5,6 +5,13 @@ import { AppModule } from './app.module';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
+  // Configuration CORS
+  app.enableCors({
+    origin: 'https://my-crud-app-912210011044.europe-west1.run.app',
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+    credentials: true,
+  });
+
   // Configuration Swagger
   const config = new DocumentBuilder()
     .setTitle('Restaurant API')
